@@ -94,7 +94,7 @@ func (a *API) dbCreateHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// TODO
-	res, err := database.CreateDB(r.Context())
+	res, err := database.Create(r.Context())
 	if err != nil {
 		// TODO
 		a.logger.Error("Cannot create DB", zap.Error(err))

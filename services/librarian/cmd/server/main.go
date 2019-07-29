@@ -68,7 +68,7 @@ func main() {
 
 	g.Go(func() error {
 		logger.Info("Connect to postgres")
-		if err := pg.Connect(); err != nil {
+		if err := pg.Connect(ctx); err != nil {
 			logger.Error("Cannot connect to postgres", zap.Error(err))
 			return errors.Wrap(err, "cannot connect to postgres")
 		}

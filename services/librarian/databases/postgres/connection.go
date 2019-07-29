@@ -1,6 +1,7 @@
 package postgres
 
 import (
+	"context"
 	"database/sql"
 	"net/url"
 	"strconv"
@@ -17,7 +18,7 @@ type connectOptions struct {
 	Password string
 }
 
-func connect(options *connectOptions) (*sql.DB, error) {
+func connect(ctx context.Context, options *connectOptions) (*sql.DB, error) {
 	q := url.Values{
 		"sslmode": []string{"disable"}, // TODO
 	}
@@ -35,7 +36,7 @@ func connect(options *connectOptions) (*sql.DB, error) {
 		return nil, errors.Wrap(err, "cannot open connection")
 	}
 
-	if err := db.Ping(); err != nil {
+	if err := db.PingContext(ctx); err != nil {
 		if cerr := db.Close(); cerr != nil {
 			return nil, errors.Wrap(err, "cannot close connection")
 		}

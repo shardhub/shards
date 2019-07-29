@@ -93,8 +93,8 @@ func New(opts ...Option) *Postgres {
 	return p
 }
 
-func (p *Postgres) Connect() error {
-	db, err := connect(&connectOptions{
+func (p *Postgres) Connect(ctx context.Context) error {
+	db, err := connect(ctx, &connectOptions{
 		Scheme:   p.scheme,
 		Host:     p.host,
 		Port:     p.port,
@@ -179,8 +179,10 @@ func (p *Postgres) Create(ctx context.Context, opts ...librarian.CreaterOption) 
 		password = options.PasswordGenerator()
 	}
 
-	var dbID int
-	var err error
+	var (
+		dbID int
+		err  error
+	)
 
 	// Database
 	err = starling.Transaction(ctx, p.managementDB, func(tx *sql.Tx) error {
@@ -374,7 +376,7 @@ func (p *Postgres) createManagementDB(ctx context.Context) error {
 }
 
 func (p *Postgres) connectManagementDB(ctx context.Context) error {
-	db, err := connect(&connectOptions{
+	db, err := connect(ctx, &connectOptions{
 		Scheme:   p.scheme,
 		Host:     p.host,
 		Port:     p.port,
