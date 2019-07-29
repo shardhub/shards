@@ -1,0 +1,7 @@
+version: "3"
+services:
+    librarian_postgres:
+        image: "postgres:10.8"
+        container_name: "librarian_postgres"
+        ports:
+            - "5432:5432"
