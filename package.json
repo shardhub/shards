@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "lint": "prettylint !package.json !package-lock.json '**/*.{js,ts,css,html,json,yml,yaml,md}' '**/.*.{js,ts,css,html,json,yml,yaml,md}'"
+  },
+  "devDependencies": {
+    "prettier": "1.18.2",
+    "prettylint": "1.0.0"
+  }
+}

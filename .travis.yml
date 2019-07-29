@@ -1,0 +1,11 @@
+matrix:
+    include:
+        # Linters
+        ## Prettier
+        - language: node_js
+          node_js:
+              - "12"
+          cache:
+              npm: true
+          script:
+              - npm run lint
