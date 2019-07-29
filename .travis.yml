@@ -36,6 +36,7 @@ jobs:
         ## Commitlint
         - stage: lint
           name: Commitlint
+          language: node_js
           node_js:
               - "12"
           cache:
