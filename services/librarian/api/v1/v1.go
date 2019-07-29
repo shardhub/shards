@@ -71,7 +71,7 @@ func (a *API) databasesListHandler(w http.ResponseWriter, r *http.Request) {
 	b, err := json.Marshal(&result)
 	if err != nil {
 		// TODO
-		a.logger.Error("Cannot marshal reponse", zap.Error(err))
+		a.logger.Error("Cannot marshal response", zap.Error(err))
 		http.Error(w, "", http.StatusInternalServerError)
 		return
 	}
@@ -142,7 +142,7 @@ func (a *API) dbCreateHandler(w http.ResponseWriter, r *http.Request) {
 	b, err := json.Marshal(&result)
 	if err != nil {
 		// TODO
-		a.logger.Error("Cannot marshal reponse", zap.Error(err))
+		a.logger.Error("Cannot marshal response", zap.Error(err))
 		http.Error(w, "", http.StatusInternalServerError)
 		return
 	}

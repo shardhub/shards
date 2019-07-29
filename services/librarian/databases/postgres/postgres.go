@@ -13,7 +13,7 @@ import (
 )
 
 // nowFunc returns the current time; it's overridden in tests.
-var nowFunc = time.Now
+var nowFunc = time.Now // nolint:gochecknoglobals
 
 var _ librarian.Database = (*Postgres)(nil)
 
