@@ -344,6 +344,18 @@ func (p *Postgres) DeleteExpired(ctx context.Context) ([]librarian.DB, error) {
 			}
 		}
 
+		deletedDBs = make([]librarian.DB, 0, len(databases))
+		for _, db := range databases {
+			for _, user := range db.Users {
+				deletedDBs = append(deletedDBs, librarian.DB{
+					Database:  db.Name,
+					Username:  user.Username,
+					Password:  "",
+					ExpiredAt: db.ExpiredAt,
+				})
+			}
+		}
+
 		return nil
 	})
 	if err != nil {
