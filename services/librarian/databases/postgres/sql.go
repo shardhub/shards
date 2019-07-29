@@ -2,7 +2,6 @@ package postgres
 
 import (
 	"context"
-	"database/sql"
 	"fmt"
 
 	"github.com/lib/pq"
@@ -11,7 +10,7 @@ import (
 	"github.com/shardhub/shards/pkg/starling"
 )
 
-func dropDatabase(ctx context.Context, db *sql.DB, name string) error {
+func dropDatabase(ctx context.Context, db starling.ExecContexter, name string) error {
 	query := fmt.Sprintf(`DROP DATABASE %s`, pq.QuoteIdentifier(name))
 
 	if _, err := db.ExecContext(ctx, query); err != nil {
@@ -21,7 +20,7 @@ func dropDatabase(ctx context.Context, db *sql.DB, name string) error {
 	return nil
 }
 
-func createDatabase(ctx context.Context, db *sql.DB, name string) error {
+func createDatabase(ctx context.Context, db starling.ExecContexter, name string) error {
 	query := fmt.Sprintf(`CREATE DATABASE %s`, pq.QuoteIdentifier(name))
 
 	if _, err := db.ExecContext(ctx, query); err != nil {

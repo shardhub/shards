@@ -33,7 +33,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	defer logger.Sync()
+	defer logger.Sync() // nolint:errcheck
 
 	// Create librarian
 	l := librarian.New()
@@ -68,7 +68,7 @@ func main() {
 
 	g.Go(func() error {
 		logger.Info("Connect to postgres")
-		if err := pg.Connect(); err != nil {
+		if err := pg.Connect(ctx); err != nil {
 			logger.Error("Cannot connect to postgres", zap.Error(err))
 			return errors.Wrap(err, "cannot connect to postgres")
 		}

@@ -66,12 +66,12 @@ func Transaction(ctx context.Context, db *sql.DB, fn func(*sql.Tx) error) (err e
 
 	defer func() {
 		if r := recover(); r != nil {
-			tx.Rollback() //nolint:gosec,errcheck
+			tx.Rollback() // nolint:gosec,errcheck
 			panic(r)
 		}
 
 		if err != nil {
-			tx.Rollback() //nolint:gosec,errcheck
+			tx.Rollback() // nolint:gosec,errcheck
 			return
 		}
 

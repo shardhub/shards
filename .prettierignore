@@ -2,5 +2,9 @@
 /node_modules
 /vendor
 
+# NPM Package file
+/package.json
+/package-lock.json
+
 # Editors
 /.vscode

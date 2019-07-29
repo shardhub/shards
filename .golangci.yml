@@ -1,0 +1,7 @@
+linters:
+    enable-all: true
+    disable:
+        - lll
+
+service:
+    golangci-lint-version: 1.17.1
