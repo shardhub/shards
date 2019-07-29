@@ -1,8 +1,10 @@
-matrix:
+jobs:
     include:
-        # Linters
-        ## Golangci
-        - language: go
+        # Lint
+        ## GolangCI-Lint
+        - stage: lint
+          name: GolangCI-Lint
+          language: go
           go:
               - "1.12"
           install:
@@ -15,10 +17,16 @@ matrix:
               - golangci-lint run
 
         ## Prettier
-        - language: node_js
+        - stage: lint
+          name: Prettier
+          language: node_js
           node_js:
               - "12"
           cache:
               npm: true
           script:
               - npm run lint
+
+stages:
+    - lint
+    - test
