@@ -157,7 +157,7 @@ func (p *Postgres) Init(ctx context.Context) error {
 	return nil
 }
 
-func (p *Postgres) CreateDB(ctx context.Context, opts ...librarian.CreaterOption) (*librarian.DB, error) {
+func (p *Postgres) Create(ctx context.Context, opts ...librarian.CreaterOption) (*librarian.DB, error) {
 	options := librarian.NewCreaterOptions(opts...)
 
 	now := nowFunc()
@@ -271,7 +271,7 @@ func (p *Postgres) List(ctx context.Context) ([]librarian.DB, error) {
 	return dbs, nil
 }
 
-func (p *Postgres) DeleteExpiredDBs(ctx context.Context) ([]librarian.DB, error) {
+func (p *Postgres) DeleteExpired(ctx context.Context) ([]librarian.DB, error) {
 	now := nowFunc()
 
 	var deletedDBs []librarian.DB

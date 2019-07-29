@@ -101,12 +101,22 @@ func WithTTL(ttl time.Duration) CreaterOption {
 // 	return func(o *CreaterOptions) { o.TTL = 0 }
 // }
 
-type Creater interface {
-	CreateDB(ctx context.Context, opts ...CreaterOption) (*DB, error)
+type Creator interface {
+	Create(ctx context.Context, opts ...CreaterOption) (*DB, error)
+}
+
+type Lister interface {
+	List(ctx context.Context) ([]DB, error)
+}
+
+type Deleter interface {
+	DeleteExpired(ctx context.Context) ([]DB, error)
 }
 
 type Database interface {
-	Creater
+	Creator
+	Lister
+	Deleter
 }
 
 func NewCreaterOptions(opts ...CreaterOption) *CreaterOptions {
