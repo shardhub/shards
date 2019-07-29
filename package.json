@@ -4,6 +4,9 @@
     "lint": "prettylint !package.json !package-lock.json '**/*.{js,ts,css,html,json,yml,yaml,md}' '**/.*.{js,ts,css,html,json,yml,yaml,md}'"
   },
   "devDependencies": {
+    "@commitlint/cli": "8.1.0",
+    "@commitlint/config-conventional": "8.1.0",
+    "@commitlint/travis-cli": "8.1.0",
     "prettier": "1.18.2",
     "prettylint": "1.0.0"
   }

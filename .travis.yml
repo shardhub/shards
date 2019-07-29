@@ -33,6 +33,16 @@ jobs:
           script:
               - npm run lint
 
+        ## Commitlint
+        - stage: lint
+          name: Commitlint
+          node_js:
+              - "12"
+          cache:
+              npm: true
+          script:
+              - npx commitlint-travis
+
 stages:
     - lint
     - test
